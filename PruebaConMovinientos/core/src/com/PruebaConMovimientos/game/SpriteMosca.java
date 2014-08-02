@@ -21,7 +21,7 @@ public class SpriteMosca {
 
 	public SpriteMosca (float x, float y){
 	
-		moscaSheet = new Texture(Gdx.files.internal("sheetMosca4x1.png")); 
+		moscaSheet = new Texture(Gdx.files.internal("sheetmosca4x1.png")); 
         TextureRegion[][] tmp = TextureRegion.split(moscaSheet, moscaSheet.getWidth()/FRAME_COLS, moscaSheet.getHeight()/FRAME_ROWS);  
         moscaFrames = new TextureRegion[FRAME_COLS * FRAME_ROWS];
         
