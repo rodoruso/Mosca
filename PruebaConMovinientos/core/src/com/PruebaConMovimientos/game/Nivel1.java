@@ -24,14 +24,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 
-public class PantallaJuego extends InputAdapter implements Screen {
+public class Nivel1 extends InputAdapter implements Screen {
 
 	private static final ShapeType ShapeType = null;
-	private Texture textureImage, textureStar;
-	private Image image, imageStar;
+	private Texture  textureStar;
+	private Image  imageStar;
 	private Stage stage;
-	static public int WIDTH = 800;
-	static public int HEIGHT = 600;
 	Vector3 touchPos1;
 	public SpriteBatch batch;
 	ArrayList<Mosca> moscas = new ArrayList<Mosca>();
@@ -48,7 +46,7 @@ public class PantallaJuego extends InputAdapter implements Screen {
 	ArrayList<SpriteSangre> manchas = new ArrayList<SpriteSangre>();
 
 	
-	public PantallaJuego(PruebaConMovimientos game) {
+	public Nivel1(PruebaConMovimientos game) {
 		this.game = game;
 	}
 	
@@ -58,7 +56,7 @@ public class PantallaJuego extends InputAdapter implements Screen {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-	//	camera.update();
+		camera.update();
 		batch.setProjectionMatrix(camera.combined);
 		
 		cuadradroBoubds.setProjectionMatrix(camera.combined);
@@ -92,7 +90,7 @@ public class PantallaJuego extends InputAdapter implements Screen {
 		
 		cuadradroBoubds.begin(ShapeType.Line);
 		cuadradroBoubds.setColor(1, 1, 0, 1);
-		cuadradroBoubds.rect(45,45, WIDTH-90, HEIGHT-90);
+		cuadradroBoubds.rect(45,45, game.WIDTH-90, game.HEIGHT-90);
 		cuadradroBoubds.end();
 	}
 
@@ -115,17 +113,17 @@ public class PantallaJuego extends InputAdapter implements Screen {
 	@Override
 	public void resize(int width, int height) {
 
-		WIDTH = width;
-		HEIGHT = height;
-		camera.setToOrtho(false, WIDTH, HEIGHT);
-		fondo.setBounds(0, 0, WIDTH, HEIGHT);
+		game.WIDTH = width;
+		game.HEIGHT = height;
+		camera.setToOrtho(false, game.WIDTH, game.HEIGHT);
+		fondo.setBounds(0, 0, game.WIDTH, game.HEIGHT);
 
 	}
 
 	@Override
 	public void show() {
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, WIDTH, HEIGHT);
+		camera.setToOrtho(false, game.WIDTH, game.HEIGHT);
 		//
 		// stage = new Stage();
 
@@ -136,7 +134,7 @@ public class PantallaJuego extends InputAdapter implements Screen {
 		
 		
 	    timeLabel = new Label("Tiempo = ", labelStyle);
-		timeLabel.setPosition(25f, PantallaJuego.HEIGHT-25f);
+		timeLabel.setPosition(25f, game.HEIGHT-25f);
 		//timeLabel.setCenterPosition(PantallaJuego.WIDTH/2, PantallaJuego.HEIGHT-50f);
 		
 				
@@ -145,14 +143,14 @@ public class PantallaJuego extends InputAdapter implements Screen {
 		batch = new SpriteBatch();
 		
 		fondo = new Image(Assets.fondo);
-		fondo.setBounds(0, 0, WIDTH, HEIGHT);
+		fondo.setBounds(0, 0, game.WIDTH, game.HEIGHT);
 
 		cuadradroBoubds = new ShapeRenderer();
 	
 	//	SpriteSangre mancha = new SpriteSangre();
 			
 	//	manchas.add(mancha);
-		Mosca mosca = new Mosca(this);
+		Mosca mosca = new Mosca(game);
 			
 		moscas.add(mosca);
 		
@@ -204,10 +202,10 @@ public class PantallaJuego extends InputAdapter implements Screen {
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
-		if (hitDetection(screenX, HEIGHT - screenY))   /// HEIGHT - screenY para corregir el draw
-			System.out.println("le pegaste en pos: X" + screenX + " ,Y"	+ (HEIGHT - screenY));
+		if (hitDetection(screenX, game.HEIGHT - screenY))   /// HEIGHT - screenY para corregir el draw
+			System.out.println("le pegaste en pos: X" + screenX + " ,Y"	+ (game.HEIGHT - screenY));
 		 else	
-			System.out.println("NO le pegaste en pos: X" + screenX + " ,Y" + (HEIGHT - screenY));
+			System.out.println("NO le pegaste en pos: X" + screenX + " ,Y" + (game.HEIGHT - screenY));
 				
 		return true;
 	}
@@ -223,7 +221,7 @@ public class PantallaJuego extends InputAdapter implements Screen {
 				//// traigo la posicion de la mosca y no uso el punto de touch para que nazca la nueva
 					//// donde va la antigua mosca
 					       
-					moscas.add(new Mosca(this,vector.x,vector.y,2));
+					moscas.add(new Mosca(game,vector.x,vector.y,2));
 				}
 				else{
 					moscas.remove(mosca);

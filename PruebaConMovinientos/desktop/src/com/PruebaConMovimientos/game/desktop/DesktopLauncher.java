@@ -5,7 +5,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.tools.imagepacker.TexturePacker2;
 import com.badlogic.gdx.tools.imagepacker.TexturePacker2.Settings;
 import com.PruebaConMovimientos.game.CopyOfSpriteSangre;
-import com.PruebaConMovimientos.game.PantallaJuego;
+import com.PruebaConMovimientos.game.Nivel1;
 import com.PruebaConMovimientos.game.PruebaConMovimientos;
 import com.PruebaConMovimientos.game.SpriteSangre;
 
@@ -22,8 +22,8 @@ public class DesktopLauncher {
 			}
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		
-		config.width = PantallaJuego.WIDTH;
-		config.height = PantallaJuego.HEIGHT;
+		config.width = PruebaConMovimientos.WIDTH;
+		config.height = PruebaConMovimientos.HEIGHT;
 		//config.resizable = false;
 		new LwjglApplication(new PruebaConMovimientos(), config);
 		

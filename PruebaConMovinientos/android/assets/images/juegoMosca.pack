@@ -5,50 +5,85 @@ filter: Nearest,Nearest
 repeat: none
 fondo
   rotate: false
-  xy: 1, 367
+  xy: 1, 408
   size: 800, 600
   orig: 800, 600
   offset: 0, 0
   index: -1
 exit_down
   rotate: false
-  xy: 1, 244
+  xy: 1, 285
   size: 375, 121
   orig: 375, 121
   offset: 0, 0
   index: -1
 play_down
   rotate: false
-  xy: 1, 122
+  xy: 1, 163
   size: 375, 120
   orig: 375, 120
   offset: 0, 0
   index: -1
 exit_up
   rotate: false
-  xy: 378, 246
+  xy: 378, 287
   size: 374, 119
   orig: 374, 119
   offset: 0, 0
   index: -1
 play_up
   rotate: false
-  xy: 1, 1
+  xy: 1, 42
   size: 374, 119
   orig: 374, 119
   offset: 0, 0
   index: -1
 mosca3
   rotate: false
-  xy: 803, 877
+  xy: 803, 918
   size: 90, 90
   orig: 90, 90
   offset: 0, 0
   index: -1
 mosca3verde
   rotate: false
-  xy: 378, 154
+  xy: 378, 195
   size: 90, 90
   orig: 90, 90
+  offset: 0, 0
+  index: -1
+boton1
+  rotate: false
+  xy: 754, 367
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1
+boton1_down
+  rotate: false
+  xy: 1, 1
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1
+boton2
+  rotate: false
+  xy: 803, 877
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1
+boton2_down
+  rotate: false
+  xy: 895, 969
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1
+boton3
+  rotate: false
+  xy: 470, 246
+  size: 39, 39
+  orig: 39, 39
   offset: 0, 0
   index: -1

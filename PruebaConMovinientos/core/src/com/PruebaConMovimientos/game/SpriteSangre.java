@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.PruebaConMovimientos.game.Assets;
@@ -42,7 +43,8 @@ public class SpriteSangre {
                 
             }
         }
-        bloodAnimation = new Animation(1/20f, bloodFrames);    
+      bloodAnimation = new Animation(1/20f, bloodFrames);    
+         
         stateTime = 0f;         
         }
 
@@ -59,8 +61,8 @@ public class SpriteSangre {
 	public void draw(SpriteBatch batch, float delta) {
 		stateTime += delta; 
 	//	stateTime += Gdx.graphics.getDeltaTime();           // #15
-          currentFrame = bloodAnimation.getKeyFrame(stateTime, true); 
-          batch.draw(currentFrame, posX, posY);   // 20 = SPRITE_SIZE
+         // currentFrame = bloodAnimation.getKeyFrame(stateTime, true); 
+          batch.draw(bloodAnimation.getKeyFrame(stateTime, true), posX, posY);   // 20 = SPRITE_SIZE
 
 	}
     

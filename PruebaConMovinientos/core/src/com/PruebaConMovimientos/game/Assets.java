@@ -15,6 +15,9 @@ public class Assets {
 	public static TextureRegion exit_up;
 	public static TextureRegion play_down;
 	public static TextureRegion play_up;
+	public static TextureRegion boton1, boton1_down;
+	public static TextureRegion boton2, boton2_down;;
+	public static TextureRegion boton3;
 	public static BitmapFont whiteFont;
 	public static BitmapFont blackFont;
 	public static TextureRegion blood_sprite_sheet;
@@ -33,7 +36,11 @@ public class Assets {
 		blood_sprite_sheet = atlas.findRegion("blood_sprite_sheet");
 		whiteFont = new BitmapFont(Gdx.files.internal("fnt/comic_white.fnt"),false);
 	    blackFont = new BitmapFont(Gdx.files.internal("fnt/comic_black.fnt"),false);
-		
+	    boton1 = atlas.findRegion("boton1");
+	    boton1_down = atlas.findRegion("boton1_down");
+	    boton2 = atlas.findRegion("boton2");
+	    boton2_down = atlas.findRegion("boton2_down");
+	    boton3 = atlas.findRegion("boton3");
 	}
 
 	public static void dispose() {

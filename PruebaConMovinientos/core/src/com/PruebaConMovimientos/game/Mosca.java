@@ -20,7 +20,7 @@ public class Mosca {
 	private float destY;
 	private Vector2 puntoDest;
 	private float angulo;
-	private PantallaJuego pantallaJuego;
+	private PruebaConMovimientos pantallaJuego;
 	private float vel = 50f; /// pixeles por second
 	private float origX;
 	private float origY;
@@ -35,12 +35,12 @@ public class Mosca {
 	private int golpe=0;
 	
 
-	public Mosca(PantallaJuego pantallaJuego) {
+	public Mosca(PruebaConMovimientos game) {
 
 		//Texture texture = new Texture("mosca3.png");
 		sprite = new Sprite(Assets.mosca3verde);
 
-		this.pantallaJuego = pantallaJuego;  /// le paso la pantalla del juego para poder aaceder al ancho y alto respondiendo 
+		this.pantallaJuego = game;  /// le paso la pantalla del juego para poder aaceder al ancho y alto respondiendo 
 											// al encubrimiento de objeto
 		sprite.setSize(sprite.getWidth() / 2, sprite.getHeight() / 2); /// en vez de usar escala uso esto porq la escala mantiene el tamaño original
 		
@@ -52,10 +52,12 @@ public class Mosca {
 		sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);// donde se centra el el sprite (la rotacion la hace con este centro)
 		
 		//sprite.setPosition(sprite.getWidth() -sprite.getWidth() / 2, sprite.getHeight()-sprite.getHeight() / 2);// donde nace el sprite
-		sprite.setPosition((float) (Math.random() * (pantallaJuego.WIDTH - (origX*2))), (float) (Math.random() * (pantallaJuego.HEIGHT - (origX*2))));
+		sprite.setPosition((float) (Math.random() * (game.WIDTH - (origX*2))), (float) (Math.random() * (game.HEIGHT - (origX*2))));
+	
+	
 	}
 
-	public Mosca(PantallaJuego pantallaJuego2, float x, float y,int i) {   //// mandar numero de texture
+	public Mosca(PruebaConMovimientos pantallaJuego2, float x, float y,int i) {   //// mandar numero de texture
 		this(pantallaJuego2);
 		sprite.setPosition(x, y);
 		setGolpe(i);
@@ -79,7 +81,7 @@ public class Mosca {
 	 *            aleatorio
 	 * @param delta
 	 *            es el tiempo entre impresiones de pantalla
-	 * @param vel
+	 * @param data.vel
 	 *            es la velocidad que queremos que tenga
 	 * @param WIDTH
 	 *            define el ancho donde se podra mover nuestro sprite
