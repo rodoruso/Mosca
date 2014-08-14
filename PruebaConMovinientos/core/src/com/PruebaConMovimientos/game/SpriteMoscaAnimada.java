@@ -7,19 +7,19 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 
-public class SpriteMosca {
+public class SpriteMoscaAnimada {
 
     private static final int    FRAME_COLS = 4;     
     private static final int    FRAME_ROWS = 1;
     private static final float FRAME = 1/25f; 
-	private Animation           moscaAnimation;   
-    private Texture             moscaSheet;    
-    private TextureRegion[]     moscaFrames;   
-    private float stateTime;                    
-	private SpriteBase spriteAnimadoBase ;
+	 Animation           moscaAnimation;   
+     Texture             moscaSheet;    
+     TextureRegion[]     moscaFrames;   
+     float stateTime;                    
+	 SpriteBase spriteAnimadoBase ;
 
 
-	public SpriteMosca (float x, float y){
+	public SpriteMoscaAnimada (float x, float y){
 	
 		moscaSheet = new Texture(Gdx.files.internal("sheetmosca4x1.png")); 
         TextureRegion[][] tmp = TextureRegion.split(moscaSheet, moscaSheet.getWidth()/FRAME_COLS, moscaSheet.getHeight()/FRAME_ROWS);  

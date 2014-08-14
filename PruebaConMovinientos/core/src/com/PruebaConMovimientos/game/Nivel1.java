@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.PruebaConMovimientos.game.Assets;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
@@ -25,11 +26,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 
-public class Nivel1 extends NivelBase  {
-	
-	ArrayList<Mosca> moscas = new ArrayList<Mosca>();
+public class Nivel1 extends NivelBase {
+	SpriteMoscaVerde moscaVerde;
+	ArrayList<SpriteMoscaBlanca> moscas = new ArrayList<SpriteMoscaBlanca>();
 	ArrayList<SpriteSangre> manchas = new ArrayList<SpriteSangre>();
-	
+	private int origX=20;
+	private int origY=20;
+	private boolean muerteMoscaVerde=false;
 	
 	public Nivel1(PruebaConMovimientos game) {
 		super(game);
@@ -37,6 +40,8 @@ public class Nivel1 extends NivelBase  {
 	}
 	
 	protected void drawChild (SpriteBatch batch2, float delta){
+		if(!muerteMoscaVerde)
+			moscaVerde.draw(batch2, delta);
 		
 		for (SpriteSangre mancha : manchas) { 
 			mancha.draw(batch2, delta);
@@ -45,86 +50,66 @@ public class Nivel1 extends NivelBase  {
 				{manchas.remove(mancha);
 				break;
 				}
-		
 		}
 		
-		for (Mosca mosca : moscas) {
+		for (SpriteMoscaBlanca mosca : moscas) {
 			
-			mosca.MovAleat(delta);
-			mosca.draw(batch2);
+			mosca.spriteAnimadoBase.draw(batch2,delta);
 		}
+		evaluaGameOver();
 	}
 	
 	
 	protected void evaluaGameOver() {
-		if(moscas.size()==0)
-		{
-			System.out.println("nivel terminado!!!!!!!");
-			game.setScreen(new PantallaMenu(game));
-			dispose();
-		}
+		if(moscas.size()==0&&muerteMoscaVerde)	{
+			System.out.println("toque algopara continuar, nivel terminado!!!!!!!");
+			if(Gdx.input.isTouched())	{
+				game.setScreen(new PantallaMenu(game));
+				dispose();
+		}}
 	}
 
 	
 	protected void showChild(){
-		
-		Mosca mosca = new Mosca(game);
-		
-		moscas.add(mosca);
+		Vector2 vectorAleat = new Vector2((float) (Math.random() * (game.WIDTH - (origX*2))), (float) (Math.random() * (game.HEIGHT - (origY*2))));
+		moscaVerde= new SpriteMoscaVerde(vectorAleat);
+	
 	}
 	
 	
-	protected  boolean hitDetection(int screenX, int screenYCorregido) {
-
-		for (Mosca mosca : moscas) {
-
-			if (mosca.contains(screenX,  screenYCorregido))	{
-				vector.set(mosca.getPos());  
-				if (mosca.getGolpe()<2)	{
-					mosca.setGolpe();
-				//// traigo la posicion de la mosca y no uso el punto de touch para que nazca la nueva
-					//// donde va la antigua mosca
-					       
-					moscas.add(new Mosca(game,vector.x,vector.y,2));
-				}
+	protected  boolean hitDetection(Rectangle punteroRectangulo) {
+// evalua la mosca verde
+	if(	!muerteMoscaVerde && moscaVerde.spriteAnimadoBase.contains(punteroRectangulo)){
+		
+			if (moscaVerde.spriteAnimadoBase.getGolpe()<2)	{
+					
+					moscaVerde.spriteAnimadoBase.setGolpe();
+					moscas.add(new SpriteMoscaBlanca(moscaVerde.spriteAnimadoBase.getPos()));//// traigo la posicion de la mosca y no uso el punto de touch para que nazca la nueva
+				}																	//// donde va la antigua mosca
 				else{
-					moscas.remove(mosca);
-					manchas.add(new SpriteSangre(vector.x,vector.y));
-					}
+					manchas.add(new SpriteSangre(moscaVerde.spriteAnimadoBase.getPos()));
+					muerteMoscaVerde = true;
+				}
 				return true;
 			}
-					
-		}
-		return false;
-
+	// evalua las moscas blancas 		
+	
+	if(moscas!=null){
+		for (SpriteMoscaBlanca mosca : moscas) 
+			if(	 mosca.spriteAnimadoBase.contains(punteroRectangulo)){
+				//// traigo la posicion de la mosca y no uso el punto de touch para que nazca la nueva
+							//// donde va la antigua mosca
+				
+					manchas.add(new SpriteSangre(mosca.spriteAnimadoBase.getPos()));
+					moscas.remove(mosca);
+					return true;	
+			}
+				
+			
 	}
 
-	private void buildStars(int x, int y) {
-		for (int i = 0; i < 6; i++) {
-			textureStar = new Texture("star.png");
-			imageStar = new Image(textureStar);
-			// posicion inicial
-			imageStar.setCenterPosition(x, y);
+	return false;
 
-			// posicion final
-			int fx = (int) (imageStar.getCenterX() + Math.sin(Math
-					.toRadians(i * 60)) * 100);
-			int fy = (int) (imageStar.getCenterY() + Math.cos(Math
-					.toRadians(i * 60)) * 100);
-
-			// Movimiento, decelerado tambien
-			MoveToAction action = new MoveToAction();
-			action.setPosition(fx, fy);
-			action.setDuration(0.2f);
-			// action.setInterpolaion(Interpolation.exp10);
-
-			imageStar.addAction(Actions.sequence(
-					Actions.parallel(action, Actions.fadeOut(0.5f)),
-					(Actions.removeActor())));
-
-			// y lo añadimos a este Stage
-			stage.addActor(imageStar);
-		}
 	}
 
 

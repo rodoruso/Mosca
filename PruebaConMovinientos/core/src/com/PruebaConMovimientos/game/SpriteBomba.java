@@ -23,7 +23,7 @@ public class SpriteBomba {
     private TextureRegion[]     bombaFrames;   
     private float stateTime;                    
 
-	private SpriteBase spriteAnimadoBase;
+	SpriteBase spriteAnimadoBase;
 
 
 

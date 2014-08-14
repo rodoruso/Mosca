@@ -6,6 +6,7 @@ import com.badlogic.gdx.tools.imagepacker.TexturePacker2;
 import com.badlogic.gdx.tools.imagepacker.TexturePacker2.Settings;
 import com.PruebaConMovimientos.game.CopyOfSpriteSangre;
 import com.PruebaConMovimientos.game.Nivel1;
+import com.PruebaConMovimientos.game.PinchToZoom;
 import com.PruebaConMovimientos.game.PruebaConMovimientos;
 import com.PruebaConMovimientos.game.SpriteSangre;
 
@@ -26,7 +27,7 @@ public class DesktopLauncher {
 		config.height = PruebaConMovimientos.HEIGHT;
 		//config.resizable = false;
 		new LwjglApplication(new PruebaConMovimientos(), config);
-		
+	
 		//new LwjglApplication(new CopyOfSpriteSangre(), config);
 		
 	}

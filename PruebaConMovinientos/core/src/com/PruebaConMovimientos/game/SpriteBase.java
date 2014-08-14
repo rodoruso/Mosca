@@ -3,6 +3,7 @@ package com.PruebaConMovimientos.game;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class SpriteBase {
@@ -26,6 +27,7 @@ public class SpriteBase {
 	public float disTot;
 	public float distRec;
 	public float vel;
+	public int golpe=0;
 
 
 public SpriteBase(TextureRegion keyFrame, float origX, float origY, float vel) {
@@ -89,7 +91,23 @@ public Vector2 getPos() {
 	position = new Vector2(Math.abs(recorridoX),Math.abs(recorridoY));
 	return position;
 }
+public int getGolpe() {
+	return golpe;
+	
+}
+public boolean contains(Rectangle punteroRectangulo) {
 
+	return sprite.getBoundingRectangle().contains(punteroRectangulo);
+}
+
+public void setGolpe() {
+	golpe++;
+	return ;
+}
+public void setGolpe(int i) {
+	golpe=i;
+	return ;
+}
 
 
 }
